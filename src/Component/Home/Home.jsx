@@ -1,15 +1,15 @@
-import { request, getAuthToken, isLoggedIn } from '../../Helper/Axios';
+import { request } from '../../Helper/Axios';
 import Login from '../Login';
 import HttpMethod from '../../Constant/HttpMethod';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import NavBar from '../NavBar';
+import AuthContext from '../../Context/AuthContext';
 
 function Home() {
+    let { isActive, setIsActive } = useContext(AuthContext);
     let [data, setData] = useState("Loading....");
-    let [isActive, setIsActive] = useState(isLoggedIn());
     if (!isActive) {
-        console.log(getAuthToken());
         return <Login  
             setIsActive={setIsActive}
         />;

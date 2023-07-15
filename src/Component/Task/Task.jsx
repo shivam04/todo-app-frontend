@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import TaskForm from '../TaskForm';
 import NavBar from '../NavBar';
 import { Button, Spinner } from 'react-bootstrap';
@@ -51,6 +51,7 @@ function Task({id}) {
     if (task.isLoading) {
         return (
             <>
+                <NavBar />
                 <Spinner animation="border" size="sm" />
                 <Spinner animation="border" />
                 <Spinner animation="grow" size="sm" />

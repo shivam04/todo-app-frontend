@@ -1,14 +1,15 @@
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import { isLoggedIn } from '../../Helper/Axios';
 import { clearSession } from '../../Helper/Axios';
 import { useNavigate } from 'react-router-dom';
+import AuthContext from '../../Context/AuthContext';
+import { useContext } from 'react';
 
 function NavBar() {
+    const {isActive, setIsActive} = useContext(AuthContext);
     const nav = useNavigate();
     function logout(e) {
         e.preventDefault();
-        console.log(e);
-        clearSession(nav);
+        clearSession(nav, setIsActive);
     }
     return (
         <> 
@@ -16,7 +17,7 @@ function NavBar() {
                 <Container>
                     <Navbar.Brand href="/"> Home </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    {isLoggedIn() ? 
+                    {isActive ? 
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
                                 <Nav.Link href="/create">Create Task</Nav.Link>

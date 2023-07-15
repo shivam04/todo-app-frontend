@@ -11,8 +11,8 @@ function Login({ setIsActive  }) {
         loginState = {...newLoginState};
     }
 
-    function onSubmitLogin() {
-        console.log(HttpMethod.POST);
+    function onSubmitLogin(e) {
+        e.currentTarget.disabled = true;
         request(
             HttpMethod.POST, 
             "/api/auth/authorize",

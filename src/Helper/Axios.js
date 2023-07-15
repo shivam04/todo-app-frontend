@@ -1,12 +1,13 @@
 import axios from 'axios';
 import AuthConstant from '../Constant/AuthConstant';
 
-export function clearSession(nav) {
+export function clearSession(nav, setIsActive) {
     request(
         'GET',
         '/api/auth/logout'
     ).then(res => {
         setAuthHeader(null);
+        setIsActive(false);
         nav("/");
     }).catch(err => {
         console.log(err);
